@@ -1,0 +1,33 @@
+
+# Variables d'environnement et secrets
+.env
+.env.*
+!env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# React / Node.js
+node_modules/
+dist/
+build/
+npm-debug.log*
+yarn-debug.log*
+
+# Éditeurs et systèmes
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Fichiers de tests et couverture
+.coverage
+htmlcov/
