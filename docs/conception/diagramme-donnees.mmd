@@ -1,0 +1,63 @@
+
+erDiagram
+    ADMINISTRATEUR ||--o{ PRODUIT : cree
+    ADMINISTRATEUR ||--o{ SERVICE : cree
+    PRODUIT o|--o{ DEMANDE : concerne
+    SERVICE o|--o{ DEMANDE : concerne
+
+    ADMINISTRATEUR {
+        int administrateur_id PK
+        string nom
+        string prenom
+        string email UK
+        string telephone
+        string mot_de_passe_hash
+        string adresse
+        string photo_profil
+        datetime date_creation
+        datetime date_modification
+    }
+
+    PRODUIT {
+        int produit_id PK
+        int administrateur_id FK
+        string nom
+        text description
+        decimal prix_actuel
+        string photo
+        string etat_disponibilite
+        boolean est_actif
+        datetime date_creation
+        datetime date_modification
+    }
+
+    SERVICE {
+        int service_id PK
+        int administrateur_id FK
+        string nom
+        text description
+        string type_tarification
+        decimal prix
+        string photo
+        string etat_disponibilite
+        boolean est_actif
+        datetime date_creation
+        datetime date_modification
+    }
+
+    DEMANDE {
+        int demande_id PK
+        int produit_id FK
+        int service_id FK
+        string nom_client
+        string telephone_client
+        string email_client
+        text message
+        string statut
+        datetime date_creation
+        datetime date_modification
+    }
+```mermaid
+erDiagram
+    ADMINISTRATEUR ||--o{ PRODUIT : cree
+```
