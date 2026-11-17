@@ -481,3 +481,31 @@ Ces éléments ne remettent pas en cause la validation fonctionnelle du backlog.
 - US-17 à US-19 : validées.
 
 Ce backlog constitue la référence fonctionnelle du MVP TechCare Mini. Toute modification ultérieure devra être identifiée et validée avant d'être intégrée au projet.
+
+## Visualisation des dépendances
+
+Voici comment je vois l'enchaînement général du projet :
+
+### Création administrateur
+- US-07
+
+### Authentification
+- US-08
+
+### Gestion des produits
+- US-10, US-09, US-11, US-12
+
+### Catalogue produits
+- US-01, US-03
+
+### Gestion des services
+- US-14, US-13, US-15, US-16
+
+### Catalogue services
+- US-02, US-04
+
+### Gestion des demandes publiques
+- US-05, US-06
+
+### Traitement des demandes par l'administrateur
+- US-17, US-18, US-19
