@@ -1,50 +1,81 @@
-# US-07 — Créer le premier compte administrateur
+# US-07 — Création du premier administrateur
 
-**Type :** User Story
-**Priorité :** Haute
-**Statut :** À faire
+## 1. Description
 
-## Description
+**En tant que** responsable de TechCare Mini,  
+**je veux** créer le premier compte administrateur à l’aide d’un code d’activation,  
+**afin de** sécuriser l’accès à l’espace d’administration.
 
-En tant que responsable de TechCare, je veux créer le premier compte administrateur à l'aide d'un code d'activation afin de sécuriser l'accès à l'administration.
+## 2. Informations du formulaire
 
-## Objectif métier
+Le formulaire de création du premier administrateur doit contenir les champs suivants :
 
-Permettre au responsable de créer le compte administrateur initial tout en empêchant toute création ultérieure d'un autre compte administrateur.
+- Nom
+- Prénom
+- Adresse e-mail
+- Mot de passe
+- Code d’activation
 
-## Critères d'acceptation
+Tous les champs sont obligatoires.
 
-- [] Une page permet de créer le premier compte administrateur.
-- [] Le formulaire demande le nom, le prénom, l'adresse e-mail, le mot de passe et le code d'activation.
-- [] Tous ces champs sont obligatoires.
-- [] Le système vérifie que le code d'activation est correct.
-- [] Le système vérifie qu'aucun compte administrateur n'existe déjà.
-- [] Si toutes les vérifications réussissent, le compte est créé.
-- [] Après la création, toute nouvelle tentative d'inscription administrateur est refusée.
-- [] Si le code est incorrect, le compte n'est pas créé et un message d'erreur est affiché.
-- [] Le mot de passe est stocké de manière sécurisée, jamais en clair.
+## 3. Critères d’acceptation
 
-## Règles de sécurité
+- Le formulaire de création du premier administrateur est accessible lorsqu’aucun administrateur n’existe.
+- Le système vérifie que tous les champs obligatoires sont renseignés.
+- Le système vérifie la validité du code d’activation.
+- Le système vérifie qu’aucun compte administrateur n’a déjà été créé.
+- Si toutes les vérifications réussissent, le compte administrateur est créé.
+- Si le code d’activation est incorrect, aucun compte n’est créé et un message d’erreur est affiché.
+- Après la création du premier administrateur, toute nouvelle tentative de création d’un compte administrateur par cette procédure est refusée.
 
-- Le code d'activation est conservé dans les variables d'environnement du serveur.
-- Le code d'activation ne doit jamais être exposé au frontend.
-- Le mot de passe doit être haché avant son stockage.
-- Les tentatives d'activation doivent être limitées.
-- La création du premier administrateur doit être protégée contre les inscriptions concurrentes.
+## 4. Règles métier
 
-## Périmètre technique
+- Un seul compte administrateur peut être créé par cette procédure.
+- Le nom et le prénom sont obligatoires.
+- L’adresse e-mail doit être unique.
+- Le code d’activation est défini côté serveur.
+- Le code d’activation ne doit jamais être stocké dans la base de données.
+- Le code d’activation ne doit jamais être exposé dans le frontend.
+- Le mot de passe doit être enregistré sous forme de hash.
 
-- Frontend : React JavaScript.
-- Backend : FastAPI.
-- Base de données : PostgreSQL.
-- ORM : SQLAlchemy.
-- Tests : Pytest.
+## 5. Sécurité
 
-## Définition de terminé (Definition of Done)
+- Utiliser une comparaison sécurisée pour vérifier le code d’activation.
+- Limiter le nombre de tentatives de saisie du code.
+- Ne jamais afficher ni journaliser le mot de passe ou le code d’activation.
+- Empêcher deux créations simultanées du premier administrateur.
 
-- Tous les critères d'acceptation sont validés.
-- Les validations frontend et backend sont réalisées.
-- Les règles de sécurité sont testées.
+## 6. Périmètre technique
+
+**Backend :**
+- Vérification de l’existence d’un administrateur.
+- Validation des données reçues.
+- Vérification du code d’activation.
+- Hashage du mot de passe.
+- Création du compte administrateur.
+- Protection contre les créations concurrentes.
+
+**Frontend :**
+- Formulaire de création du premier administrateur.
+- Validation des champs.
+- Affichage des erreurs et du résultat de la création.
+
+**Tests :**
+- Création avec des données valides.
+- Refus avec un code incorrect.
+- Refus si un administrateur existe déjà.
+- Vérification du hash du mot de passe.
+- Vérification des tentatives répétées et des créations simultanées.
+
+## 7. Définition de terminé (Definition of Done)
+
+- Les critères d’acceptation sont respectés.
+- Les règles métier et de sécurité sont appliquées.
 - Les tests automatisés passent.
-- Le code est documenté lorsque nécessaire.
-- Le commit est réalisé et la branche est fusionnée après revue.
+- Le formulaire frontend communique correctement avec le backend.
+- Le ticket est documenté et les modifications sont validées par Git.
+
+## 8. Endpoint disponible
+
+- GET /api/administrateurs/inscription-disponible
+- POST /api/administrateurs/inscription
